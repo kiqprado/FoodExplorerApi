@@ -1,0 +1,19 @@
+{
+  "name": "foodexplorerapi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/server.js",
+    "dev": "nodemon ./src/server.js"
+  },
+  "keywords": [],
+  "author": "KîQ",
+  "license": "ISC",
+  "description": "An API intended for the FoodExplorer application. A new way to meet your demands in just a few clicks with the best Menus just a few clicks away.",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

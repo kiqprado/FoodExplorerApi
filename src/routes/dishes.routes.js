@@ -6,7 +6,7 @@ const dishesRoutes = Router()
 
 const dishesController =  new DishesController
 
-dishesRoutes.post('/dishes', dishesController.create )
+dishesRoutes.post('/', dishesController.create )
 
 module.exports = dishesRoutes
 

@@ -84,7 +84,7 @@ class DishesController {
 
     await knex('dishes').where({ id }).delete()
 
-    return res.json()
+    return res.status(204).json()
   }
 }
 

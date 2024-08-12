@@ -91,7 +91,7 @@ class OrdersController {
 
     const orderWithItems = await Promise.all(
       order_user.map(async order => {
-        const items = await knex('orders_items')
+        const items = await knex('order_items')
           .select([
             'dishes.title as dish_title',
             'order_items.order_id',

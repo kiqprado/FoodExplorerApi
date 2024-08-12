@@ -4,7 +4,7 @@ const FavoritesController = require('../controllers/FavoritesController')
 
 const favoritesRoutes = Router()
 
-const favoritesController =  new FavoritesController
+const favoritesController =  new FavoritesController()
 
 favoritesRoutes.post('/', favoritesController.create)
 favoritesRoutes.get('/', favoritesController.index)

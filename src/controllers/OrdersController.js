@@ -21,7 +21,7 @@ class OrdersController {
       updated_at: formattedDate
     })
 
-    return res.json({ id })
+    return res.status(201).json({ id })
   }
 
   async update(req, res) {

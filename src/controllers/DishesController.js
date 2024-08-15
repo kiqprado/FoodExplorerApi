@@ -52,7 +52,7 @@ class DishesController {
   }
 
   async index(req, res) {
-    const { title, category_id } = req.query
+    /* const { title, category_id } = req.query
 
     let dishes
 
@@ -68,6 +68,45 @@ class DishesController {
     const dishWithIngredients = dishes.map(dish => {
       const dishIngredient = ingredientsItems.filter(
         ingredients => ingredients.dish_id === dish.id
+      )
+
+      return {
+        ...dish,
+        ingredients: dishIngredient
+      }
+    })
+
+    return res.json(dishWithIngredients) */
+
+    const { title, category_id, ingredients } = req.query
+
+    let dishesQuery
+
+    if (ingredients) {
+      const filterIngredients = ingredients
+        .split(',')
+        .map(ingredient => ingredient.trim())
+
+      dishesQuery = await knex('ingredients')
+        .select('dishes.id', 'dishes.title')
+        .innerJoin('ingredients', 'dishes.id', 'ingredients.dish_id')
+        .whereIn('ingredients.name', filterIngredients)
+        .whereLike('dishes.title', `%${title}%`)
+        .groupBy('dishes.id')
+    } else {
+      dishesQuery = knex('dishes')
+        .where({ category_id })
+        .whereLike('title', `%${title}%`)
+        .orderBy('title')
+    }
+
+    const dishes = await dishesQuery.select('dishes.*')
+
+    const ingredientsItems = await knex('ingredients').select('*')
+
+    const dishWithIngredients = dishes.map(dish => {
+      const dishIngredient = ingredientsItems.filter(
+        ingredient => ingredient.dish_id === dish.id
       )
 
       return {

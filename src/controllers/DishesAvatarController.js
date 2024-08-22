@@ -15,7 +15,7 @@ class DishesAvatarController {
     const dish = await knex('dishes').where({ id }).first()
 
     if (!dish) {
-      throw new AppError('Não foi encontrar o Prato')
+      throw new AppError('Não foi possível encontrar o Prato')
     }
 
     const filename = await diskStorage.saveFile(avatar)

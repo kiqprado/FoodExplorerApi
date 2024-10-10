@@ -67,7 +67,7 @@ class UsersController {
         throw new AppError('A senha antiga não confere!')
       }
 
-      ;(user.password = await hash(password)), 8
+      user.password = await hash(password, 8)
     }
 
     await database.run(

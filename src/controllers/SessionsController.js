@@ -6,7 +6,7 @@ const authConfig = require('../configs/auth')
 
 const { compare } = require('bcryptjs')
 
-const { sign } = require('jsonwebtoken')
+const { sign } =  require('jsonwebtoken')
 
 class SessionsController {
   async create(req, res) {

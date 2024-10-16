@@ -20,15 +20,15 @@ class FavoritesController {
     }
 
     const alreadyFavorite = await knex('favorites')
-      .where({ dish_id: dish.id, user_id })
-      .first()
+    .where({ dish_id, user_id })
+    .first();
 
     if (alreadyFavorite) {
       throw new AppError('Este Prato já está em seus favoritos.')
     }
 
     await knex('favorites').insert({
-      dish_id: dish.id,
+      dish_id,
       user_id
     })
 
